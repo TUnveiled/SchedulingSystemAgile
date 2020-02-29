@@ -3,34 +3,56 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheet/stylesheet.css">
-    <style>
-        select {
-            width: 600px;
-            margin: 10px;
-        }
-    </style>
 </head>
 <body>
 
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+        <a href="#">Home</a>
+        <a href="#">My Profile</a>
+        <a href="#">Log Out</a>
+    </div>
+</div>
 
-<form method="post" class="login.php">
-    <h1 class="sign-in-header" > Groups </h1>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
-    <select size = "4">
-        <option value="g1">  Insert Group 1 </option>
-        <option value="g2">  Insert Group 2</option>
-        <option value="g3">  Insert Group 3</option>
-        <option value="g4">  Insert Group 4</option>
-        <option value="g5">  Insert Group 5</option>
-        <option value="g6">  Insert Group 6</option>
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Your Groups </h1>
+
+<div class="container" style="width: auto">
+    <form method="post" class="login.php">
+
+    <select style="width: 100%"  size = "4">
+        <option class="listbox-option" value="g1">  Insert Group 1 </option>
+        <option class="listbox-option" value="g2">  Insert Group 2</option>
+        <option class="listbox-option" value="g3">  Insert Group 3</option>
+        <option class="listbox-option" value="g4">  Insert Group 4</option>
+        <option class="listbox-option" value="g5">  Insert Group 5</option>
+        <option class="listbox-option" value="g6">  Insert Group 6</option>
     </select>
 
-</form>
+    </form>
 
-<form>
-    <button type="submit" class="longprimary">Select</button>
-    <button type="submit" class="longsecondary">Create Group</button>
-</form>
+    <form>
+        <button type="submit" class="longprimary">Select</button>
+        <button type="submit" class="longsecondary">Create Group</button>
+    </form>
+
+</div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+    }
+</script>
 
 </body>
 </html>

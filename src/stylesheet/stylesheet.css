@@ -7,9 +7,7 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-
   margin: -20px 0 50px;
-
   background-color: #4e413b;
   color: white;
   overflow: auto;

@@ -1,14 +1,3 @@
-
-class createGroup {
-
-  constructor() {
-
-  //const db = firebase.firestore();
-
-}
-//db.collection('groups').get().then((snapshot) => {
-
-}
 const form = document.querySelector('#group');
 if (!sessionStorage.uid) {
   sessionStorage.uid = "hrYlfJgZzOhhEC1dNrC1DFCziwN2";

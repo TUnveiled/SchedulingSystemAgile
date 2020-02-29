@@ -30,7 +30,7 @@
     "eslint": "^6.6.0",
     "eslint-config-recommended": "^4.0.0",
     "eslint-plugin-mocha": "^6.2.1",
-    "firebase": "^1.0.1",
+    "firebase": "^7.7.0",
     "firebase-functions": "^3.3.0",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
@@ -78,5 +78,9 @@
     "modernizr-config.json",
     "README.md"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@angular/fire": "^5.3.0",
+    "@firebase/app": "^0.5.2",
+    "angularfire2": "^5.3.0"
+  }
 }

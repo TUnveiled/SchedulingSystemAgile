@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<html>
+<div>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="stylesheet/stylesheet.css">
   <style>
 
   </style>
-</head>
-<body>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first --><!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
 
-<form method="post" class="login.php">
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+  <script src="js/firebaseConfig.js"></script>
+  <script>
+    function LogIn() {
+      let fb = sessionStorage.fb;
+
+      firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        sessionStorage.token = result.credential.accessToken;
+        // The signed-in user info.
+        sessionStorage.email = result.user.email;
+        sessionStorage.name = result.user.displayName;
+
+        alert(" " + result.user.email + " " + result.user.displayName);//Object.keys(result.user));
+
+        // alert(" " + JSON.stringify(sessionStorage));
+        // ...
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }
+  </script>
+
+</head>
+
+
+
+<div>
   <h1 class="sign-in-header" > Welcome to Pro-Scheduler </h1>
-  <button name="login" type="submit" class="longprimary">Sign In With Google</button>
-</form>
+  <button name="login" onclick="LogIn()" class="longprimary">Sign In With Google</button>
+</div>
 </body>
 </html>

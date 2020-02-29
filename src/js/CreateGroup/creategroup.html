@@ -1,16 +1,39 @@
-<header>
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
   Create Group
-</header>
+</head>
+<body>
 <div class="content">
     <form id="group">
       <label for="gname">Group Name:</label><br>
       <input type="text" id="gname" name="gname"><br>
       <label for="gdescrip">Group Description:</label><br>
       <input type="text" id="gdescrip" name="gdescrip">
+      <button>Submit</button>
     </form>
 
   <ul id="group-list"></ul>
 </div>
+  <script>
+    let config = {
+      apiKey: "AIzaSyD_SxZ9Gn1esESkAvIlkj4lI0YpawSoNl4",
+      authDomain: "agileproject-1ee78.firebaseapp.com",
+      databaseURL: "https://agileproject-1ee78.firebaseio.com",
+      projectId: "agileproject-1ee78",
+      storageBucket: "agileproject-1ee78.appspot.com",
+      messagingSenderId: "467883013107",
+      appId: "1:467883013107:web:207f13d3620e624ae05886",
+      measurementId: "G-5YC07FPS1C"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore();
+    db.settings({timestampsInSnapshots:true});
+  </script>
+  <script src="./creategroup.js"></script>
+</body>
+</html>
 
 
 

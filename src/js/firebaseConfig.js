@@ -1,8 +1,5 @@
-import firebase from 'firebase';
-import 'firebase/firestore';
-
 // Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyD_SxZ9Gn1esESkAvIlkj4lI0YpawSoNl4",
   authDomain: "agileproject-1ee78.firebaseapp.com",
   databaseURL: "https://agileproject-1ee78.firebaseio.com",
@@ -15,17 +12,5 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
-const currentUser = auth.currentUser;
 
-// firebase collections
-const usersCollection = db.collection('users');
-const groupsCollection = db.collection('groups');
 
-export {
-  auth,
-  currentUser,
-  usersCollection,
-  groupsCollection
-}

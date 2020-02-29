@@ -20,14 +20,28 @@
       firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         sessionStorage.token = result.credential.accessToken;
+
         // The signed-in user info.
         sessionStorage.email = result.user.email;
         sessionStorage.name = result.user.displayName;
+        sessionStorage.uid = result.user.uid;
 
-        alert(" " + result.user.email + " " + result.user.displayName);//Object.keys(result.user));
+        firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+          if (doc.exists) {
+            let data = doc.data();
+            sessionStorage.groups = data.groups;
+            window.location.replace("groups.html");
+          } else {
+            firebase.firestore().collection('users').doc(sessionStorage.uid).set({
+              email: sessionStorage.email,
+              name: sessionStorage.name,
+              groups: [],
+            }).then(() => {
+              window.location.replace("groups.html");
+            })
+          }
 
-        // alert(" " + JSON.stringify(sessionStorage));
-        // ...
+        });
       }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;

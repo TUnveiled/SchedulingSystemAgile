@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-* {
-
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
 body {
   background-image: url("download.jpg");
   display: flex;
@@ -13,8 +7,11 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-  height: 100vh;
   margin: -20px 0 50px;
+  background-color: #4e413b;
+  color: white;
+  overflow: auto;
+  padding: 30px;
 }
 
 p {
@@ -23,6 +20,26 @@ p {
   line-height: 20px;
   letter-spacing: 0.5px;
   text-align: center;
+}
+
+h1 {
+  margin: 10px;
+}
+
+select
+{
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+input
+{
+  padding: 8px;
+  box-sizing : border-box;
+  height: 40px;
+  font-size: 17px;
 }
 
 /*****************************************************/
@@ -52,7 +69,7 @@ p {
 
 .icon {
   padding: 10px;
-  background: #383838;
+  background: #4e413b;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -68,7 +85,7 @@ p {
 
 .sign-in-header {
   font-weight: bold;
-  margin: 0;
+  margin: 10px;
   text-align: center;
 }
 
@@ -77,10 +94,59 @@ p {
 }
 
 /*****************************************************/
-/* HEADERS */
+/* FULL SCREEN NAV BAR */
 /*****************************************************/
 
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
 
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
 
 /*****************************************************/
 /* BUTTONS */
@@ -89,8 +155,8 @@ p {
 button
 {
   border-radius: 20px;
-  border: 1px solid #383838;
-  background-color: #383838;
+  border: 1px solid #4e413b;
+  background-color: #4e413b;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -120,14 +186,14 @@ button.shortprimary {
 button.longsecondary {
   width: 100%;
   background-color: transparent;
-  border: 2px solid #383838;
-  color: #383838;
+  border: 2px solid #4e413b;
+  color: #4e413b;
 }
 
 button.shortsecondary {
   background-color: transparent;
-  border: 2px solid #383838;
-  color: #383838;
+  border: 2px solid #4e413b;
+  color: #4e413b;
   width: auto;
 }
 
@@ -150,14 +216,42 @@ button.shortsecondary {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   position: relative;
   overflow: hidden;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
+  margin: 10px;
+  padding: 15px;
+  color: #4e413b;
+  width:400px;
 }
 
-.form-container {
-  position: absolute;
-  top: 0;
-  height: 300px;
-  transition: all 0.2s ease-in-out;
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
+
+.listbox
+{
+  width: 100%;
+  padding: 10px;
+}
+
+.listbox-option
+{
+  padding: 10px;
+}
+
+.inline-container
+{
+  display: flex;
+  align-items: center;
+}
+
+.search-input
+{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.expand {
+  width: 100%;
+}
+

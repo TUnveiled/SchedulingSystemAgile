@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first --><!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
 </head>
 <body>
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+        <a href="#">Home</a>
+        <a href="#">My Profile</a>
+        <script src="js/logout.js"></script>
+        <a href="#" onclick="LogOut()">Log Out</a>
+    </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Your Groups </h1>
+
+<div class="container" style="width: auto">
+    <form method="post" class="login.php">
+
+    <select style="width: 100%"  size = "4">
+        <option class="listbox-option" value="g1">  Insert Group 1 </option>
+        <option class="listbox-option" value="g2">  Insert Group 2</option>
+        <option class="listbox-option" value="g3">  Insert Group 3</option>
+        <option class="listbox-option" value="g4">  Insert Group 4</option>
+        <option class="listbox-option" value="g5">  Insert Group 5</option>
+        <option class="listbox-option" value="g6">  Insert Group 6</option>
+    </select>
+
+    </form>
+
+    <form>
+        <button type="submit" class="longprimary">Select</button>
+        <button type="submit" class="longsecondary">Create Group</button>
+    </form>
+
+</div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+    }
+</script>
 
 </body>
 </html>

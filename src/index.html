@@ -25,7 +25,7 @@
         sessionStorage.email = result.user.email;
         sessionStorage.name = result.user.displayName;
         sessionStorage.uid = result.user.uid;
-
+//
         firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
           if (doc.exists) {
             let data = doc.data();

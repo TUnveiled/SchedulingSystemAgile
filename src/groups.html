@@ -101,9 +101,46 @@
                 console.log(sessionStorage.groups);
 
     function selectGroup() {
-        let e = document.getElementById("grouplist");
-        let strUser = e.options[e.selectedIndex].text;
-        console.log(strUser);
+        let selectedGroup = document.getElementById("grouplist");
+        let printGroup = selectedGroup.options[selectedGroup.selectedIndex].text;
+        console.log(printGroup);
+
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('groups')
+                .orderBy("name")
+                .startAt(printGroup)
+                .limit(3)
+                .get()
+                .then((querySnapshot) => {
+                    let arr = [];
+                    querySnapshot.forEach(function (doc) {
+                        //console.log(doc.data())
+                    });
+                });
+        });
+
+
+        /*firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+            console.log(doc.data().groups);
+            console.log(sessionStorage.uid);
+            if (doc.exists) {
+                firebase.firestore().collection('groups').doc(printGroup).get().then((doc2) => {
+                    console.log(doc2.data().name);
+                    if(doc2.exists){
+                            console.log(true);
+                        }
+                        else{
+                            alert("Group does not exist");
+                        }
+                });
+            }
+            else {
+
+            }
+
+        });*/
+
+
     }
 
 

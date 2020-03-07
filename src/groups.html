@@ -60,6 +60,7 @@
        }
 
    }
+   console.log(options);
    document.getElementById("grouplist").innerHTML = options;
 </script>
     </span>
@@ -107,14 +108,16 @@
 
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('groups')
-                .orderBy("name")
-                .startAt(printGroup)
-                .limit(3)
+                .where('name', '==', printGroup)
                 .get()
                 .then((querySnapshot) => {
-                    let arr = [];
                     querySnapshot.forEach(function (doc) {
                         //console.log(doc.data())
+                        sessionStorage.groupname = doc.data().name;
+                        sessionStorage.groupdescription = doc.data().description;
+                        console.log(doc.data().name);
+                        console.log(doc.data().description);
+                        window.location.replace("js/GroupInfo/groupinfo.html");
                     });
                 });
         });

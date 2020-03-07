@@ -53,7 +53,7 @@
             //console.log(data[0]);
             options += "<option selected>Select option</option>";
             for (let i = 0; i < data.length; i++){
-                firebase.firestore().collection('groups').doc(data[i].Xm.path.segments[6]).get().then((doc) => {
+                firebase.firestore().collection('groups').doc(data[i].id).get().then((doc) => {
                     let group = doc.data();
                     console.log(group);
 

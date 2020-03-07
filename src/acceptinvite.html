@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylesheet/stylesheet.css">
+        <style>
+
+        </style>
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first --><!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+        <script src="./js/firebaseConfig.js"></script>
+    </head>
+</head>
+<body>
+    <h1 class="sign-in-header" id="header"> You have been invited to a group</h1>
+    <h2> Sign in to Continue </h2>
+    <h3 id="groupdesc"></h3>
+    <br><br>
+    <button name="login" onclick="LogIn()" class="longprimary">Sign In With Google</button>
+    <script>
+        function LogIn() {
+            let fb = sessionStorage.fb;
+
+            firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                sessionStorage.token = result.credential.accessToken;
+
+                // The signed-in user info.
+                sessionStorage.email = result.user.email;
+                sessionStorage.name = result.user.displayName;
+                sessionStorage.uid = result.user.uid;
+//
+                firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+                    if (doc.exists) {
+                        let data = doc.data();
+                        let groups = data.groups;
+                        groups.push(firebase.firestore().collection("groups").doc(id));
+
+                        // add the user to the group in the group table
+                        firebase.firestore().collection("groups").doc(id).collection('members').add({
+                            role: 'member',
+                            user: firebase.firestore().collection("users").doc(sessionStorage.uid)
+                        });
+
+                        // give the user a reference to the group as well
+                        firebase.firestore().collection("users").doc(sessionStorage.uid).update({
+                            groups: groups
+                        });
+                        window.location.replace("groups.html");
+                    } else {
+                        // create the user with a reference to their group
+                        firebase.firestore().collection('users').doc(sessionStorage.uid).set({
+                            email: sessionStorage.email,
+                            name: sessionStorage.name,
+                            groups: [firebase.firestore().collection("groups").doc(id)],
+                        }).then((doc) => {
+                            // add a reference to the user in the group
+                            firebase.firestore().collection('groups').doc(id).collection('members').add({
+                                role: 'member',
+                                user: firebase.firestore().collection("users").doc(sessionStorage.uid)
+                            });
+                            window.location.replace("groups.html");
+                        });
+                    }
+
+                });
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+        }
+
+        let url = window.location.href;
+        let id = url.slice(url.indexOf("?") + 1);
+
+        firebase.firestore().collection('groups').doc(id).get().then((doc) => {
+            let data = doc.data();
+            console.log(data);
+            document.getElementById("header").innerHTML = "You have been invited to " + data['name'];
+            document.getElementById("groupdesc").innerHTML = data['description'];
+        });
+
+    </script>
+</body>
+</html>

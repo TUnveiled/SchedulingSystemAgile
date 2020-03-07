@@ -10,7 +10,15 @@
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
     <script src="js/firebaseConfig.js"></script>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.location.replace("index.html");
+        }
+    </script>
 </head>
+
 <body>
 
 <div id="myNav" class="overlay">
@@ -44,24 +52,27 @@
         <select id="grouplist" name="grouplist"></select><br>
         <span>
     <script>
-   let val = sessionStorage.groups.length;
-   let options = "";
-   let i = 0;
-   let list_of_groups = sessionStorage.groups;
-   let groupArr = list_of_groups.split(',');
-   console.log(groupArr);
-   for(let x = -1; x < groupArr.length; x++)
-   {
-       if (i == 0){
-           options += "<option selected>Select option</option>";
-           i++;
-       } else {
-           options += "<option value="+ groupArr[x] +">"+ groupArr[x] +"</option>";
-       }
+        let options = "";
 
-   }
-   console.log(options);
-   document.getElementById("grouplist").innerHTML = options;
+        firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+            let data = doc.data().groups;
+            console.log(data.length);
+            //console.log(sessionStorage.uid);
+            //console.log(data[0]);
+            options += "<option selected>Select option</option>";
+            for (let i = 0; i < data.length; i++){
+                firebase.firestore().collection('groups').doc(data[i].id).get().then((doc) => {
+                    let group = doc.data();
+                    console.log(group);
+
+                            options += "<option value=" + group.name + ">" + group.name + "</option>";
+                            console.log(options);
+                            document.getElementById("grouplist").innerHTML = options;
+
+                });
+            }
+        });
+
 </script>
     </span>
 

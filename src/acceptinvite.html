@@ -25,7 +25,7 @@
 
     <script>
         function LogIn() {
-            
+
             firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 sessionStorage.token = result.credential.accessToken;
@@ -52,7 +52,7 @@
                         firebase.firestore().collection("users").doc(sessionStorage.uid).update({
                             groups: groups
                         });
-                        //window.location.replace("groups.html");
+                        window.location.replace("groups.html");
                     } else {
                         // create the user with a reference to their group
                         firebase.firestore().collection('users').doc(sessionStorage.uid).set({

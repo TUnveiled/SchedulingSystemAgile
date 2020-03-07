@@ -12,7 +12,12 @@
   <!-- Add Firebase products that you want to use -->
   <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
-  <script src="js/firebaseConfig.js"></script>
+  <script src="./js/firebaseConfig.js"></script>
+</head>
+
+<body>
+<div>
+  <h1 class="sign-in-header" > Welcome to Pro-Scheduler </h1>
   <script>
     function LogIn() {
       let fb = sessionStorage.fb;
@@ -54,17 +59,9 @@
       });
     }
   </script>
-
-</head>
-
-<body>
-<div>
-  <h1 class="sign-in-header" > Welcome to Pro-Scheduler </h1>
   <button name="login" onclick="LogIn()" class="longprimary">Sign In With Google</button>
 </div>
 </body>
-
-  <form action="./js/CreateGroup/creategroup.html">
 
   </form>
 </html>

@@ -7,17 +7,18 @@ console.log("HERE");
   form.addEventListener('submit', (e) => {
     // prevents page refresh
     e.preventDefault();
-    db.collection('groups').add({
+    firebase.firestore().collection('groups').add({
       name : form.gname.value,
       description : form.gdescrip.value,
-      owner : db.collection("users").doc(sessionStorage.uid),
+      owner : firebase.firestore().collection("users").doc(sessionStorage.uid),
     }).then((doc)=> {
-      db.collection('groups/' + doc.id + '/members').add({
+      firebase.firestore().collection('groups/' + doc.id + '/members').add({
         role: "owner",
-        user: db.collection("users").doc(sessionStorage.uid),
+        user: firebase.firestore().collection("users").doc(sessionStorage.uid),
       });
     });
       // clears fields after value is entered
+    console.log(sessionStorage.name);
       console.log("HERE");
       form.gname.value;
       form.gdescrip.value;

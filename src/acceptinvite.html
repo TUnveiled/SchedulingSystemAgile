@@ -40,8 +40,9 @@
                     if (doc.exists) {
                         let data = doc.data();
                         let groups = data.groups;
+                        console.log(groups);
                         groups.push(firebase.firestore().collection("groups").doc(id));
-
+                        console.log(groups);
                         // add the user to the group in the group table
                         firebase.firestore().collection("groups").doc(id).collection('members').add({
                             role: 'member',
@@ -52,7 +53,7 @@
                         firebase.firestore().collection("users").doc(sessionStorage.uid).update({
                             groups: groups
                         });
-                        window.location.replace("groups.html");
+                        //window.location.replace("groups.html");
                     } else {
                         // create the user with a reference to their group
                         firebase.firestore().collection('users').doc(sessionStorage.uid).set({

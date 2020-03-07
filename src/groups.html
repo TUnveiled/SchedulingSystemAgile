@@ -68,7 +68,7 @@
 
     </form>
 
-    <button class="longprimary">Select</button>
+    <button class="longprimary" onclick="selectGroup()">Select</button>
     <button onclick="createGroup()" class="longsecondary">Create Group</button>
 
 
@@ -100,7 +100,11 @@
                 //printgroups.innerHTML += '<div class="result">' + sessionStorage.groups + '</div>';
                 console.log(sessionStorage.groups);
 
-
+    function selectGroup() {
+        let e = document.getElementById("grouplist");
+        let strUser = e.options[e.selectedIndex].text;
+        console.log(strUser);
+    }
 
 
 </script>

@@ -45,8 +45,9 @@
 
     <form>
         <button type="submit" class="longprimary">Select</button>
-        <button type="submit" class="longsecondary">Create Group</button>
     </form>
+    <button onclick="createGroup()" class="longsecondary">Create Group</button>
+
 
 </div>
 
@@ -59,6 +60,9 @@
 
     function closeNav() {
         document.getElementById("myNav").style.height = "0%";
+    }
+    function createGroup() {
+        window.location.replace("js/CreateGroup/creategroup.html");
     }
 </script>
 

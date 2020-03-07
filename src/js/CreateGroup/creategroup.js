@@ -18,6 +18,7 @@ console.log("HERE");
       });
     });
       // clears fields after value is entered
+    console.log(sessionStorage.name);
       console.log("HERE");
       form.gname.value;
       form.gdescrip.value;

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<script>
+    var settings = {
+        days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"], // Days displayed
+        hours: "1:00AM-12:00PM", // Hours displyed
+        fontFamily: "Montserrat", // Font used in the component
+        fontColor: "black", // Font colot used in the component
+        fontWeight: "100", // Font weight used in the component
+        fontSize: "0.8em", // Font size used in the component
+        hoverColor: "#727bad", // Background color when hovered
+        selectionColor: "#9aa7ee", // Background color when selected
+        headerBackgroundColor: "transparent", // Background color of headers
+    }
+    var mySettings = {
+        hoverColor: "red";
+    selectionColor: "pink"
+    }
+
+    $('#target').weekly_schedule(settings);
+
+
+
+</script>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="jquery.weekly-schedule-plugin.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Test times</title>
+</head>
+<body>
+<div class="container" style="margin: auto; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
+    <div id="target">
+    </div>
+    <button onclick="getData()">Click</button>
+</div>
+<script>
+    var settings = {
+        days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"], // Days displayed
+        hours: "1:00AM-12:00PM", // Hours displyed
+        fontFamily: "Montserrat", // Font used in the component
+        fontColor: "black", // Font colot used in the component
+        fontWeight: "100", // Font weight used in the component
+        fontSize: "0.8em", // Font size used in the component
+        hoverColor: "light-green", // Background color when hovered
+        selectionColor: "green", // Background color when selected
+        headerBackgroundColor: "transparent", // Background color of headers
+    }
+    $('#target').weekly_schedule(settings);
+    function getData(){
+        var TimeObject={//object to get all of the start and end time
+            Day: 1,
+            Start: 1,
+            End: 1,
+        }
+        var dates=$('#target').weekly_schedule("getSelectedHour");
+        console.log(dates);
+        var lengths=[dates[0].length,dates[1].length,dates[2].length,dates[3].length,dates[4].length,dates[5].length,dates[6].length];
+        var Times=new Array(lengths.length);
+        console.log(lengths);
+        var AllDates= new Array(lengths.length);
+        for(var m=0;m<lengths.length;m++)
+        {
+            var Objects=0;
+            var addDates=new Array(lengths[m]);
+
+            for(var l=0;l<lengths[m];l++)
+            {//need to specify object with start end and total time and find a way to get the next element of the array
+                //addDates[l]=dates[m][l].classList[1]; make the object equal to the time
+                let after=dates[m][l].nextElementSibling.attributes[0].ownerElement.classList.length;
+                let before=dates[m][l].previousElementSibling.attributes[0].ownerElement.classList.length;// if 2 it is not the end if 3 it is
+                if(before==2)// start a new object if the previous date is not used
+                {
+                    var obj = new TimeObject;
+                    obj.Day=m;
+                    obj.Start=dates[m][l].classList[1];
+                }
+                if(after==2)
+                {
+                    obj.End=dates[m][l].classList[1];
+                    // add something to add this to the return object
+                }
+                //console.log($(dates)[m][l].nextElementSibling.classList[1]);
+            }
+        AllDates[m]=addDates;
+        }
+        console.log(AllDates);
+    }
+
+</script>
+</body>
+</html>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="jquery.weekly-schedule-plugin.min.js"></script>

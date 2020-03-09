@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<script src="js/SetAvailability.js"></script>
+<link rel="stylesheet" href="stylesheet/stylesheet.css">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Your General Availability</title>
+</head>
+<body>
+<center><h1>Set your General Availability</h1></center>
+<form id="timeform">
+    <div class="section group">
+<div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+<h3>Monday</h3>
+        <form id="MonForm">
+        <label>From:</label><br>
+        <input type="time">
+            <br>
+        <label>To:</label><br>
+        <input type="time">
+        <div id="MondayAdd"></div>
+        <button id="AddMon" type="button" onclick="AddTime(MondayAdd.id)">New Time</button>
+        </form>
+</div>
+    <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+        <h3>Tuesday</h3>
+        <form id="TusForm">
+            <label>From:</label><br>
+            <input type="time">
+            <br>
+            <label>To:</label><br>
+            <input type="time">
+            <div id="TuesdayAdd"></div>
+            <button id="AddTus" type="button" onclick="AddTime(TuesdayAdd.id)">New Time</button>
+        </form>
+    </div>
+    <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+        <h3>Wednesday</h3>
+        <form id="WedForm">
+            <label>From:</label><br>
+            <input type="time">
+            <br>
+            <label>To:</label><br>
+            <input type="time">
+            <div id="WednesdayAdd"></div>
+            <button id="AddWed" type="button" onclick="AddTime(WednesdayAdd.id)">New Time</button>
+        </form>
+    </div>
+        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+            <h3>Thursday</h3>
+            <form id="ThursForm">
+                <label>From:</label><br>
+                <input type="time">
+                <br>
+                <label>To:</label><br>
+                <input type="time">
+                <div id="ThursdayAdd"></div>
+                <button id="AddThurs" type="button" onclick="AddTime(ThursdayAdd.id)">New Time</button>
+            </form>
+        </div>
+        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+            <h3>Friday</h3>
+            <form id="FriForm">
+                <label>From:</label><br>
+                <input type="time">
+                <br>
+                <label>To:</label><br>
+                <input type="time">
+                <div id="FridayAdd"></div>
+                <button id="AddFri" type="button" onclick="AddTime(FridayAdd.id)">New Time</button>
+            </form>
+        </div>
+        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+            <h3>Saturday</h3>
+            <form id="SatForm">
+                <label>From:</label><br>
+                <input type="time">
+                <br>
+                <label>To:</label><br>
+                <input type="time">
+                <div id="SaturdayAdd"></div>
+                <button id="AddSat" type="button" onclick="AddTime(SaturdayAdd.id)">New Time</button>
+            </form>
+        </div>
+        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
+            <h3>Sunday</h3>
+            <form id="SunForm">
+                <label>From:</label><br>
+                <input type="time">
+                <br>
+                <label>To:</label><br>
+                <input type="time">
+                <div id="SundayAdd"></div>
+                <button id="AddSun" type="button" onclick="AddTime(SundayAdd.id)">New Time</button>
+            </form>
+        </div>
+    </div>
+    </form>
+
+<button id="TestBtn" onclick="testClick()">Test click this button</button>
+
+<p id="Here"></p>
+<div id="mySchedule">
+</div>
+</body>
+</html>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="jquery.weekly-schedule-plugin.min.js"></script>

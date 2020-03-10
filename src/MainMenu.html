@@ -10,13 +10,8 @@
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
     <script src="js/firebaseConfig.js"></script>
-    <button onclick="goBack()">Go Back</button>
 
-    <script>
-        function goBack() {
-            window.location.replace("Login.html");
-        }
-    </script>
+
 </head>
 
 <body>
@@ -41,7 +36,7 @@
     <form method="post" class="login.php">
 
     <!--<select style="width: 100%"  size = "sessionStorage.groups.length" onchange="getGroup()">
-        <option class="listbox-option" value="g1">  Insert Group 1</option>
+        <option  value="g1">  Insert Group 1</option>
         <option class="listbox-option" value="g2">  Insert Group 2</option>
         <option class="listbox-option" value="g3">  Insert Group 3</option>
         <option class="listbox-option" value="g4">  Insert Group 4</option>
@@ -49,11 +44,13 @@
         <option class="listbox-option" value="g6">  Insert Group 6</option>
     </select>-->
 
-        <select id="grouplist" name="grouplist"></select><br>
+        <select id="grouplist" name="grouplist" size="5">
+
+        </select><br>
         <span>
     <script>
         let options = "";
-        options += "<option selected>Select group</option>";
+        options += "<option class='listbox-option'> Select Group</option>";
         document.getElementById("grouplist").innerHTML = options;
         
         firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
@@ -86,6 +83,7 @@
 
     <button class="longprimary" onclick="selectGroup()">Select</button>
     <button onclick="createGroup()" class="longsecondary">Create Group</button>
+    <button onclick="goBack()" class = "longsecondary">Back</button>
 
 
 </div>
@@ -134,7 +132,7 @@
                         console.log(doc.data().name);
                         console.log(doc.data().description);
                         console.log(doc.id);
-                        window.location.replace("GroupMenu.html");
+                        window.location.replace("js/GroupInfo/groupinfo.html");
                     });
                 });
         });

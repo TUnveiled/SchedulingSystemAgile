@@ -24,6 +24,8 @@
   </div>
 </div>
 
+
+
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
 <!-- ************************************ Page Header Ends Here ************************************ -->
@@ -41,6 +43,7 @@
 
     <button class="longprimary"  type="submit">Create</button>
     <button class="longsecondary"  type="submit">Back to Sign In</button>
+    <button class = "longsecondary" onclick="goBack()" type = "submit">Back to Main Menu</button>
 
   </form>
 </div>
@@ -59,6 +62,13 @@
 
 </body>
 
+<script>
+  function goBack() {
+    window.location.replace("/../../MainMenu.html");
+  }
+</script>
 
 <script src="creategroup.js"></script>
+
+
 

@@ -20,12 +20,14 @@
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
+<h1 class="sign-in-header" > Insert Group Name Here </h1>
+
 <form method="post" class="login.php">
 
-  <h1 class="sign-in-header" > Insert Group Name Here </h1>
   <button name="members" type="submit" class="longsecondary">Members</button>
   <button name="availability" type="submit" class="longsecondary">Availability</button>
   <button name="schedules" type="submit" class="longsecondary">Schedules</button>
+  <button name="schedules" type="submit" class="longprimary" onclick="goBack()">Back to Main Menu</button>
 
 </form>
 
@@ -36,6 +38,12 @@
 
   function closeNav() {
     document.getElementById("myNav").style.height = "0%";
+  }
+</script>
+
+<script>
+  function goBack() {
+    window.location.replace("/../../MainMenu.html");
   }
 </script>
 

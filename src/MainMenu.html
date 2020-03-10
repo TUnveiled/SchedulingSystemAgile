@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<span style="   font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
 <!-- ************************************ Page Header Ends Here ************************************ -->
 
@@ -54,6 +54,8 @@
     <script>
         let options = "";
         options += "<option selected>Select group</option>";
+        document.getElementById("grouplist").innerHTML = options;
+        
         firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
             let data = doc.data().groups;
             console.log(data.length);
@@ -71,6 +73,8 @@
 
                 });
             }
+
+
         });
 
 </script>

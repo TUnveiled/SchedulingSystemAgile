@@ -29,7 +29,8 @@
         document.getElementById("name").innerHTML = sessionStorage.groupname;
         document.getElementById("description").innerHTML = sessionStorage.groupdescription;
 
-        let members = "";
+        let members = ""
+        let memberid;
             //console.log(sessionStorage.uid);
             //console.log(data[0]);
                 firebase.firestore().collection('groups').doc(sessionStorage.groupid).collection('members').get().then((doc) => {
@@ -39,23 +40,24 @@
                     //let group = doc.data();
                     //console.log(group);
 
-                    for (let i = 0; i < doc.docs.length; i++) {
-                        console.log(doc.docs[i].id);
 
-                        firebase.firestore().collection('members').doc(doc.docs[i].id).get().then((doc) => {
-                            let Ref = firebase.firestore().collection("groups").doc(sessionStorage.groupid).collection("members");
-                            let UserRef = Ref.where("role","==","owner");
-                            console.log(UserRef);
+                            let UserRef = firebase.firestore().collection("groups").doc(sessionStorage.groupid).collection("members");
+                            UserRef.get().then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                    console.log(doc.id, ' => ', doc.get("user").id);
+                                    memberid = doc.get('user').id;
 
-                        });
+                                    firebase.firestore().collection('users').doc(memberid).get().then((doc) => {
+                                        //let data = doc.data();
+                                        console.log(doc.data().name);
+                                        let member = doc.data().name;
+                                        members += "<option value=" + member + ">" + member + "</option>";
+                                        console.log(members);
+                                        document.getElementById("members").innerHTML = members;
+                                    });
 
-
-
-                        /*firebase.firestore().collection('users').doc(doc.docs[i].id).get().then((doc) => {
-                            //let data = doc.data();
-                            console.log(doc);
-                        });*/
-                    }
+                                });
+                            });
                 });
 
 

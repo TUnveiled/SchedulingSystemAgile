@@ -1,31 +1,17 @@
 <!DOCTYPE html>
-<script>
-    var settings = {
-        days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"], // Days displayed
-        hours: "1:00AM-12:00PM", // Hours displyed
-        fontFamily: "Montserrat", // Font used in the component
-        fontColor: "black", // Font colot used in the component
-        fontWeight: "100", // Font weight used in the component
-        fontSize: "0.8em", // Font size used in the component
-        hoverColor: "#727bad", // Background color when hovered
-        selectionColor: "#9aa7ee", // Background color when selected
-        headerBackgroundColor: "transparent", // Background color of headers
-    }
-    var mySettings = {
-        hoverColor: "red";
-    selectionColor: "pink"
-    }
 
-    $('#target').weekly_schedule(settings);
+<scipt src="index.html"></scipt>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
 
-
-
-</script>
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
 <html lang="en">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="jquery.weekly-schedule-plugin.min.js"></script>
+
     <meta charset="UTF-8">
     <title>Test times</title>
 </head>
@@ -49,21 +35,16 @@
     }
     $('#target').weekly_schedule(settings);
     function getData(){
-        var TimeObject={//object to get all of the start and end time
-            Day: 1,
-            Start: 1,
-            End: 1,
-        }
+
         var dates=$('#target').weekly_schedule("getSelectedHour");
-        console.log(dates);
         var lengths=[dates[0].length,dates[1].length,dates[2].length,dates[3].length,dates[4].length,dates[5].length,dates[6].length];
         var Times=new Array(lengths.length);
-        console.log(lengths);
         var AllDates= new Array(lengths.length);
+        var Dates=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
         for(var m=0;m<lengths.length;m++)
         {
-            var Objects=0;
-            var addDates=new Array(lengths[m]);
+            var arrayboi=[];
+
 
             for(var l=0;l<lengths[m];l++)
             {//need to specify object with start end and total time and find a way to get the next element of the array
@@ -72,24 +53,40 @@
                 let before=dates[m][l].previousElementSibling.attributes[0].ownerElement.classList.length;// if 2 it is not the end if 3 it is
                 if(before==2)// start a new object if the previous date is not used
                 {
-                    var obj = new TimeObject;
-                    obj.Day=m;
+                    var obj = Object.create(null);
+                    obj.Day=Dates[m];
                     obj.Start=dates[m][l].classList[1];
                 }
                 if(after==2)
                 {
-                    obj.End=dates[m][l].classList[1];
+                    obj.End=dates[m][l].nextElementSibling.classList[1];
+                    arrayboi.push(obj);
                     // add something to add this to the return object
                 }
                 //console.log($(dates)[m][l].nextElementSibling.classList[1]);
             }
-        AllDates[m]=addDates;
+            AllDates[m]=arrayboi;
         }
         console.log(AllDates);
+        var document="OEDjHuvlcCAPwQwW8Pm4";// need to replace with the memeber and group ID after they have been found on other pages
+        var userId="vxBJ3cRFc037Lkvh27FW";
+        var Ref = firebase.firestore().collection("groups").doc(document).collection("members").doc(userId).update({//adds the data to the database
+            Availability: {
+                Sunday: AllDates[0],
+                Monday: AllDates[1],
+                Tuesday: AllDates[2],
+                Wednesday: AllDates[3],
+                Thursday: AllDates[4],
+                Friday: AllDates[5],
+                Saturday: AllDates[6]
+            }
+        })
+
     }
 
 </script>
 </body>
 </html>
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="js/firebaseConfig.js"></script>
 <script src="jquery.weekly-schedule-plugin.min.js"></script>

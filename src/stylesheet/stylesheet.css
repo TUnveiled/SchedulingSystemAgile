@@ -19,6 +19,22 @@ body {
   padding: 30px;
 }
 
+.row{
+  margin-top: 10px;
+}
+
+.col-25 {
+  float: left;
+  width: 60%;
+  padding-top: 10px;
+
+}
+
+.col-75 {
+  float: left;
+  width: 40%;
+
+}
 
 p {
   font-size: 14px;
@@ -46,33 +62,26 @@ input
   box-sizing : border-box;
   height: 40px;
   font-size: 17px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 form{
   background-color: white;
   padding: 30px;
-
+  margin: 10px;
+  color: #383838;
+  width:auto;
+  box-sizing : border-box;
 }
+
 
 /*****************************************************/
 /* INPUT FIELDS */
 /*****************************************************/
 
-.input-group label {
-  display: block;
-  text-align: left;
-  margin: 10px;
-}
 
-.login-input-container
-{
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-}
 
 .buttons-container {
   display: -ms-flexbox; /* IE10 */
@@ -223,21 +232,10 @@ button.shortsecondary {
 }
 
 .container {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  position: relative;
-  overflow: hidden;
-  margin: 10px;
-  padding: 15px;
-  color: #4e413b;
-  width:400px;
-}
-
-.container {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  max-width: 500px;
 }
 
 .listbox
@@ -255,12 +253,8 @@ button.shortsecondary {
 {
   display: flex;
   align-items: center;
-}
+  margin: 10px;
 
-.search-input
-{
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .expand {

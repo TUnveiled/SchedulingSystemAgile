@@ -43,7 +43,7 @@ const expectedFilesInDistDir = [
   'img/',
   'img/.gitignore',
 
-  'index.html',
+  'Login.html',
 
   'js/',
   'js/main.js',

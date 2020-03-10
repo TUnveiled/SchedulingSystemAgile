@@ -35,14 +35,14 @@
           if (doc.exists) {
             let data = doc.data();
             sessionStorage.groups = data.groups;
-            window.location.replace("groups.html");
+            window.location.replace("MainMenu.html");
           } else {
             firebase.firestore().collection('users').doc(sessionStorage.uid).set({
               email: sessionStorage.email,
               name: sessionStorage.name,
               groups: [],
             }).then(() => {
-              window.location.replace("groups.html");
+              window.location.replace("MainMenu.html");
             })
           }
 

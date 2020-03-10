@@ -74,7 +74,7 @@ gulp.task('copy:.htaccess', () =>
     .pipe(gulp.dest(dirs.dist))
 );
 
-gulp.task('copy:index.html', () => {
+gulp.task('copy:Login.html', () => {
   const hash = ssri.fromData(
     fs.readFileSync('node_modules/jquery/dist/jquery.min.js'),
     { algorithms: ['sha256'] }
@@ -152,7 +152,7 @@ gulp.task(
   'copy',
   gulp.series(
     'copy:.htaccess',
-    'copy:index.html',
+    'copy:Login.html',
     'copy:jquery',
     'copy:license',
     'copy:main.css',

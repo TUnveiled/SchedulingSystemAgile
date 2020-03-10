@@ -13,7 +13,7 @@ headrequest.onload = function() {
 headrequest.onloadend = function() {
     if(headrequest.status === 404)
     {
-        headrequest.open('GET', '../header.html', true);
+        headrequest.open('GET', '.../header.html', true);
         headrequest.send();
     }
 };

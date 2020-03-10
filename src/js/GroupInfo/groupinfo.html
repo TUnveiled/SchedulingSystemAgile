@@ -23,9 +23,43 @@
         <p id="name"></p>
         <label >Group Description:</label><br>
         <p id="description"></p>
+        <label >Group Members:</label><br>
+        <p id="members"></p>
     <script>
         document.getElementById("name").innerHTML = sessionStorage.groupname;
         document.getElementById("description").innerHTML = sessionStorage.groupdescription;
+
+        let members = "";
+            //console.log(sessionStorage.uid);
+            //console.log(data[0]);
+                firebase.firestore().collection('groups').doc(sessionStorage.groupid).collection('members').get().then((doc) => {
+                    //let data = doc.data().groups;
+                    console.log(doc.docs);
+                    console.log(doc.docs.length);
+                    //let group = doc.data();
+                    //console.log(group);
+
+                    for (let i = 0; i < doc.docs.length; i++) {
+                        console.log(doc.docs[i].id);
+
+                        firebase.firestore().collection('members').doc(doc.docs[i].id).get().then((doc) => {
+                            let Ref = firebase.firestore().collection("groups").doc(sessionStorage.groupid).collection("members");
+                            let UserRef = Ref.where("role","==","owner");
+                            console.log(UserRef);
+
+                        });
+
+
+
+                        /*firebase.firestore().collection('users').doc(doc.docs[i].id).get().then((doc) => {
+                            //let data = doc.data();
+                            console.log(doc);
+                        });*/
+                    }
+                });
+
+
+
     </script>
 
 

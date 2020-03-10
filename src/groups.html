@@ -53,18 +53,18 @@
         <span>
     <script>
         let options = "";
-
+        options += "<option selected>Select group</option>";
         firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
             let data = doc.data().groups;
             console.log(data.length);
             //console.log(sessionStorage.uid);
             //console.log(data[0]);
-            options += "<option selected>Select option</option>";
+
             for (let i = 0; i < data.length; i++){
                 firebase.firestore().collection('groups').doc(data[i].id).get().then((doc) => {
                     let group = doc.data();
                     console.log(group);
-
+                    console.log(data[i].id);
                             options += "<option value=" + group.name + ">" + group.name + "</option>";
                             console.log(options);
                             document.getElementById("grouplist").innerHTML = options;
@@ -126,8 +126,10 @@
                         //console.log(doc.data())
                         sessionStorage.groupname = doc.data().name;
                         sessionStorage.groupdescription = doc.data().description;
+                        sessionStorage.groupid = doc.id;
                         console.log(doc.data().name);
                         console.log(doc.data().description);
+                        console.log(doc.id);
                         window.location.replace("js/GroupInfo/groupinfo.html");
                     });
                 });

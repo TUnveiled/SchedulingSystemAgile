@@ -2,7 +2,7 @@ function RemoveMember()
 {
 var name=document.getElementById("MemEmail").value;
 console.log(name);
-var docu="Q14RGGDUyDWMI3WtGts9";//replace once group document is known
+var docu="Q14RGGDUyDWMI3WtGts9";// replace once group document is known
     var Ref = firebase.firestore().collection("groups").doc(docu).collection("members");
     UserRef=Ref.where("role","==","owner");
     UserRef.get().then(function (querySnapshot) {

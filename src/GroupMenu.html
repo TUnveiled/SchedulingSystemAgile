@@ -17,7 +17,7 @@
 <!-- Edit loadheader.js to change the javascript in the header -->
 <div id="header"><script src="js/loadheader.js"></script></div>
 
-<h1 class="sign-in-header" > Insert Group Name Here </h1>
+<h1 class="sign-in-header" id="gname" > Insert Group Name Here </h1>
 
 <form method="post" class="login.php">
 
@@ -36,6 +36,8 @@
   function goBack() {
     window.location.replace("/../../MainMenu.html");
   }
+
+  document.getElementById('gname').innerHTML = sessionStorage.groupname;
 </script>
 
 </body>

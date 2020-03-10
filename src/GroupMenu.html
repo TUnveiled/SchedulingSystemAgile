@@ -3,22 +3,19 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+  <script src="js/firebaseConfig.js"></script>
   <style>
 
   </style>
 </head>
 <body>
 
-<div id="myNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div class="overlay-content">
-    <a href="#">Home</a>
-    <a href="#">My Profile</a>
-    <a href="#">Log Out</a>
-  </div>
-</div>
-
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<!--     Edit header.html to change the html in the header     -->
+<!-- Edit loadheader.js to change the javascript in the header -->
+<div id="header"><script src="js/loadheader.js"></script></div>
 
 <h1 class="sign-in-header" > Insert Group Name Here </h1>
 
@@ -31,15 +28,9 @@
 
 </form>
 
-<script>
-  function openNav() {
-    document.getElementById("myNav").style.height = "100%";
-  }
-
-  function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
-  }
-</script>
+<!--     Edit footer.html to change the html in the footer     -->
+<!-- Edit loadfooter.js to change the javascript in the footer -->
+<div id="footer"><script src="js/loadfooter.js"></script></div>
 
 <script>
   function goBack() {

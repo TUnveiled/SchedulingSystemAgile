@@ -35,6 +35,6 @@ console.log("HERE");
       form.gname.value;
       form.gdescrip.value;
 
-    window.location.replace("MainMenu.html");
+    window.location.href = "MainMenu.html";
 });
 

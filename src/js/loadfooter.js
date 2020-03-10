@@ -13,7 +13,7 @@ footrequest.onload = function() {
 footrequest.onloadend = function() {
     if(footrequest.status === 404)
     {
-        footrequest.open('GET', '../footer.html', true);
+        footrequest.open('GET', '.../footer.html', true);
         footrequest.send();
     }
 };

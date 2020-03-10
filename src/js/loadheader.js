@@ -13,11 +13,25 @@ headrequest.onload = function() {
 headrequest.onloadend = function() {
     if(headrequest.status === 404)
     {
-        headrequest.open('GET', '../header.html', true);
+        headrequest.open('GET', '.../header.html', true);
         headrequest.send();
     }
 };
 
 headrequest.send();
 
-// tack scripts on here
+function LogOut() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        sessionStorage.token = null;
+
+        // The signed-in user info.
+        sessionStorage.email = null;
+        sessionStorage.name = null;
+        sessionStorage.uid = null;
+        window.location.replace("Login.html");
+
+    }).catch(function(error) {
+        alert(error)
+    });
+}

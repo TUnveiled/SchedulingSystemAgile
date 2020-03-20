@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<scipt src="index.html"></scipt>
+<link rel="stylesheet" href="stylesheet/stylesheet.css">
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+<script src="js/firebaseConfig.js"></script>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="jquery.weekly-schedule-plugin.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Test times</title>
+</head>
+<body>
+<!--     Edit header.html to change the html in the header     -->
+<!-- Edit loadheader.js to change the javascript in the header -->
+<div id="header"><script src="js/loadheader.js"></script></div>
+<h1>Set Your General Availability</h1>
+<div class="container" style="margin: auto; width: 50%; height: 70vh; display: flex; flex-direction: row; justify-content: center;">
+    <div id="target">
+    </div>
+</div>
+<button onclick="getData()">Submit Availability</button>
+<script>
+    var settings = {
+        days: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"], // Days displayed
+        hours: "00:00-23:00", // Hours displyed
+        fontFamily: "Montserrat", // Font used in the component
+        fontColor: "black", // Font colot used in the component
+        fontWeight: "100", // Font weight used in the component
+        fontSize: "0.8em", // Font size used in the component
+        hoverColor: "light-green", // Background color when hovered
+        selectionColor: "green", // Background color when selected
+        headerBackgroundColor: "transparent", // Background color of headers
+    }
+    $('#target').weekly_schedule(settings);
+    function getData(){
+
+        var dates=$('#target').weekly_schedule("getSelectedHour");
+        console.log($('#target'));
+        var lengths=[dates[0].length,dates[1].length,dates[2].length,dates[3].length,dates[4].length,dates[5].length,dates[6].length];
+        var Times=new Array(lengths.length);
+        var AllDates= new Array(lengths.length);
+        var Dates=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+        for(var m=0;m<lengths.length;m++) {
+            var arrayboi = [];
+
+
+            for (var l = 0; l < lengths[m]; l++) {//need to specify object with start end and total time and find a way to get the next element of the array
+                //addDates[l]=dates[m][l].classList[1]; make the object equal to the time
+
+                if (dates[m][l].previousElementSibling != null) {
+                    let before = dates[m][l].previousElementSibling.attributes[0].ownerElement.classList.length;// if 2 it is not the end if 3 it is
+                    if (before == 2)// start a new object if the previous date is not used
+                    {
+                        var obj = Object.create(null);
+                        obj.Day = Dates[m];
+                        obj.Start = dates[m][l].classList[1];
+                    }
+                } else {
+                    console.log("There is no previous element sibling");
+                    var obj=Object.create(null);
+                    obj.Day = Dates[m];
+                    obj.Start = dates[m][l].classList[1];
+                }
+
+                if (dates[m][l].nextElementSibling != null) {
+                    let after = dates[m][l].nextElementSibling.attributes[0].ownerElement.classList.length;
+                    if (after == 2) {
+                        obj.End = dates[m][l].nextElementSibling.classList[1];
+                        arrayboi.push(obj);
+                        // add something to add this to the return object
+                    }
+                } else {
+                    console.log(obj.End = dates[m][l].classList[1]);
+                    console.log("No Next Sibling")
+                    arrayboi.push(obj);
+                }
+
+
+            }
+            AllDates[m] = arrayboi;
+        }
+        console.log(AllDates);
+        var document="OEDjHuvlcCAPwQwW8Pm4";// need to replace with the memeber and group ID after they have been found on other pages
+        var userId="vxBJ3cRFc037Lkvh27FW";
+        var Ref = firebase.firestore().collection("groups").doc(document).collection("members").doc(userId).update({//adds the data to the database
+            Availability: {
+                Sunday: AllDates[0],
+                Monday: AllDates[1],
+                Tuesday: AllDates[2],
+                Wednesday: AllDates[3],
+                Thursday: AllDates[4],
+                Friday: AllDates[5],
+                Saturday: AllDates[6]
+            },
+            Approved: 0
+        })
+// need to find a way to send a message to the group owner
+        //need to route the user back to the main page
+    }
+
+</script>
+
+<!--     Edit footer.html to change the html in the footer     -->
+<!-- Edit loadfooter.js to change the javascript in the footer -->
+<div id="footer"><script src="js/loadfooter.js"></script></div>
+</body>
+</html>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="jquery.weekly-schedule-plugin.min.js"></script>

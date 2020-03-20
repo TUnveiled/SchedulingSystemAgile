@@ -20,8 +20,8 @@
 <div id="print" class="container" style="width: auto">
 
   <button name="members" type="submit" class="longsecondary" onclick="goMembers()">Members</button>
-  <button name="availability" type="submit" class="longsecondary">Availability</button>
-  <button name="schedules" type="submit" class="longsecondary">Schedules</button>
+  <button name="availability" onclick="avail()" class="longsecondary">Availability</button>
+  <button name="schedules" onclick="schedules()" class="longsecondary">Schedules</button>
   <button name="schedules" type="submit" class="longprimary" onclick="goBack()">Back to Main Menu</button>
 
 </div>
@@ -35,9 +35,17 @@
     window.location.replace("./MainMenu.html");
   }
 
+  function avail() {
+    window.location.href = "./ActualSetAvailability.html"
+  }
+
+  function schedules() {
+    window.location.href = "./GroupSchedule.html"
+  }
+
   function goMembers() {
     //window.location.replace("./groupinfo.html");
-    window.location.replace("./GroupMember.html");
+    window.location.href = "./GroupMember.html";
   }
 
   document.getElementById('gname').innerHTML = sessionStorage.groupname;

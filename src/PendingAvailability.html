@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+</head>
+<body>
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+        <a href="#">Home</a>
+        <a href="#">My Profile</a>
+        <script src="js/logout.js"></script>
+        <a onclick="LogOut()">Log Out</a>
+    </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Pending Availabilities </h1>
+
+<form style="width: auto" method="post" action="">
+    <select style="width: 100%" size="8" id="country" name="country">
+        <option class="listbox-option" value="australia">Pappi Carr</option>
+        <option class="listbox-option" value="canada">Dilli Boi</option>
+        <option class="listbox-option" value="usa">Hoshiar Puria</option>
+        <option class="listbox-option" value="australia">Ducas Lillistone</option>
+        <option class="listbox-option" value="canada">Noah Ji</option>
+        <option class="listbox-option" value="canadaa">fIDpAUL </option>
+    </select>
+    <button class="longprimary"  type="submit">Open Availability</button>
+    <button class="longsecondary"  type="submit">Back to Main Menu</button>
+</form>
+</div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+    }
+</script>
+
+</body>
+</html>

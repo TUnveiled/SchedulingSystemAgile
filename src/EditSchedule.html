@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+<!--     Edit header.html to change the html in the header     -->
+<!-- Edit loadheader.js to change the javascript in the header -->
+<div id="header"><script src="js/loadheader.js"></script></div>
+
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Edit Schedule </h1>
+
+<div class="container" style="width: auto">
+    <form method="post" action="adduser.html" id="group">
+
+
+        <label for="mname">Member Name</label>
+
+        <select id="mname" name="cars">
+            <option value="volvo">David </option>
+            <option value="saab">Sushant</option>
+            <option value="mercedes">Matthew</option>
+            <option value="audi">Lucas</option>
+        </select>
+
+        <label for="stime">Start Time</label>
+        <td><input type="time" id="stime" name="appt"></td>
+
+        <label for="etime">End Time</label>
+        <td><input type="time" id="etime" name="appt"></td>
+
+        <label for="tassign">Task Assigned</label>
+        <input type="text" id="tassign" name="gname">
+
+        <button class="longprimary" type="submit">Submit</button>
+        <button class="longsecondary" type="submit">Back to Main Menu</button>
+
+    </form>
+</div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<!--     Edit footer.html to change the html in the footer     -->
+<!-- Edit loadfooter.js to change the javascript in the footer -->
+<div id="footer"><script src="js/loadfooter.js"></script></div>
+
+</body>
+
+
+<script src="js/creategroup.js"></script>
+

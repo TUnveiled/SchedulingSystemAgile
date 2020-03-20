@@ -132,27 +132,6 @@
         });
 
 
-        /*firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
-            console.log(doc.data().groups);
-            console.log(sessionStorage.uid);
-            if (doc.exists) {
-                firebase.firestore().collection('groups').doc(printGroup).get().then((doc2) => {
-                    console.log(doc2.data().name);
-                    if(doc2.exists){
-                            console.log(true);
-                        }
-                        else{
-                            alert("Group does not exist");
-                        }
-                });
-            }
-            else {
-
-            }
-
-        });*/
-
-
     }
 
 

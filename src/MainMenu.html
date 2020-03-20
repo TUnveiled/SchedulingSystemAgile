@@ -90,8 +90,7 @@
         window.location.href = "adduser.html";
     }
     function getGroup() {
-        let x = sessionStorage.groups;
-        document.getElementById("printgroups").innerHTML = x;
+        document.getElementById("printgroups").innerHTML = sessionStorage.groups;
     }
 
         firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {

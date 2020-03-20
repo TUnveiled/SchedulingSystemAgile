@@ -3,6 +3,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheet/stylesheet.css">
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="./js/firebaseConfig.js"></script>
 </head>
 <body>
 
@@ -24,12 +28,12 @@
 
 <form style="width: auto" method="post" action="">
     <select style="width: 100%" size="8" id="country" name="country">
-        <option class="listbox-option" value="australia">Pappi Carr</option>
+        <!--<option class="listbox-option" value="australia">Pappi Carr</option>
         <option class="listbox-option" value="canada">Dilli Boi</option>
         <option class="listbox-option" value="usa">Hoshiar Puria</option>
         <option class="listbox-option" value="australia">Ducas Lillistone</option>
         <option class="listbox-option" value="canada">Noah Ji</option>
-        <option class="listbox-option" value="canadaa">fIDpAUL </option>
+        <option class="listbox-option" value="canadaa">fIDpAUL </option>-->
     </select>
     <button class="longprimary"  type="submit">Select</button>
     <button class="longsecondary"  type="submit">Remove</button>
@@ -37,9 +41,42 @@
 </form>
 </div>
 
-<!-- ************************************ Page Footer Starts Here ************************************ -->
 
 <script>
+
+    let members = ""
+    let memberid;
+    firebase.firestore().collection('groups').doc(sessionStorage.groupid).collection('members').get().then((doc) => {
+        console.log(doc.docs);
+        console.log(doc.docs.length);
+        let UserRef = firebase.firestore().collection("groups").doc(sessionStorage.groupid).collection("members");
+        UserRef.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                console.log(doc.id, ' => ', doc.get("user").id);
+                memberid = doc.get('user').id;
+
+                firebase.firestore().collection('users').doc(memberid).get().then((doc) => {
+                    console.log(doc.data().name);
+                    let member = doc.data().name;
+                    members += "<option value=" + member + ">" + member + "</option>";
+                    console.log(members);
+                    document.getElementById("country").innerHTML = members;
+                });
+
+            });
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
     function openNav() {
         document.getElementById("myNav").style.height = "100%";
     }

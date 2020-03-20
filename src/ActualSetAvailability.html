@@ -62,7 +62,7 @@
         var dates=$('#target').weekly_schedule("getSelectedHour");
        //console.log($('#target'));
        // console.log($('#target')[0].innerHTML);
-
+        console.log(dates);
         var lengths=[dates[0].length,dates[1].length,dates[2].length,dates[3].length,dates[4].length,dates[5].length,dates[6].length];
         var Times=new Array(lengths.length);
         var AllDates= new Array(lengths.length);
@@ -97,7 +97,7 @@
                         // add something to add this to the return object
                     }
                 } else {
-                    obj.End = dates[m][l].classList[1];
+                    obj.End = "12:00AM";
                     //console.log("No Next Sibling")
                     arrayboi.push(obj);
                 }

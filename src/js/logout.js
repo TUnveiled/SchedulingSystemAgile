@@ -7,7 +7,7 @@ function LogOut() {
         sessionStorage.email = null;
         sessionStorage.name = null;
         sessionStorage.uid = null;
-        window.location.replace("Login.html");
+        window.location.replace("index.html");
 
     }).catch(function(error) {
         alert(error)

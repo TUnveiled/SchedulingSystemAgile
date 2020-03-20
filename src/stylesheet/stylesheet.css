@@ -19,22 +19,6 @@ body {
   padding: 30px;
 }
 
-.row{
-  margin-top: 10px;
-}
-
-.col-25 {
-  float: left;
-  width: 60%;
-  padding-top: 10px;
-
-}
-
-.col-75 {
-  float: left;
-  width: 40%;
-
-}
 
 p {
   font-size: 14px;
@@ -52,8 +36,8 @@ select
 {
   padding: 12px;
   border: 1px solid #ccc;
+  border-radius: 4px;
   resize: none;
-  width: 100%;
 }
 
 input
@@ -62,26 +46,27 @@ input
   box-sizing : border-box;
   height: 40px;
   font-size: 17px;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
-
-form{
-  background-color: white;
-  padding: 30px;
-  margin: 10px;
-  color: #383838;
-  width:auto;
-  box-sizing : border-box;
-}
-
 
 /*****************************************************/
 /* INPUT FIELDS */
 /*****************************************************/
 
+.input-group label {
+  display: block;
+  text-align: left;
+  margin: 10px;
+}
 
+.login-input-container
+{
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
 
 .buttons-container {
   display: -ms-flexbox; /* IE10 */
@@ -175,6 +160,7 @@ form{
 
 button
 {
+  border-radius: 20px;
   border: 1px solid #4e413b;
   background-color: #4e413b;
   color: #FFFFFF;
@@ -231,10 +217,21 @@ button.shortsecondary {
 }
 
 .container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  padding: 15px;
+  color: #4e413b;
+  width:400px;
+}
+
+.container {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-  max-width: 500px;
 }
 
 .listbox
@@ -252,8 +249,12 @@ button.shortsecondary {
 {
   display: flex;
   align-items: center;
-  margin: 10px;
+}
 
+.search-input
+{
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .expand {
@@ -314,55 +315,4 @@ button.shortsecondary {
 @media only screen and (max-width: 480px) {
   .col {  margin: 1% 0 1% 0%; }
   .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { width: 100%; }
-}
-
-/*****************************************************/
-/* SET AVAILIBILTY
-/*****************************************************/
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #4f4a4a;
-}
-tr:nth-child(odd) {
-  background-color: #4f4a4a;
-}
-tr:nth-child(1) {
-  background-color: #D2691E;
-}
-
-
-
-/*****************************************************/
-/* EDIT SCHEDULE DROP DOWN
-/*****************************************************/
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }

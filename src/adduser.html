@@ -1,1 +1,71 @@
-HELLO
+
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="../firebaseConfig.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../stylesheet/stylesheet.css">
+    <style>
+
+    </style>
+    <h1>Invite group members!</h1>
+</head>
+<body>
+<div class="container" style="width: auto">
+    <form method="post" action="adduser.html" id="inviteform">
+        <label for="grouplist">Select Group:</label>
+        <select id="grouplist" name="grouplist"></select><br>
+        <span>
+    <script>
+        let options = "";
+
+        firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+            let data = doc.data().groups;
+            console.log(data.length);
+            //console.log(sessionStorage.uid);
+            //console.log(data[0]);
+            options += "<option selected>Select option</option>";
+            for (let i = 0; i < data.length; i++){
+                firebase.firestore().collection('groups').doc(data[i].id).get().then((doc) => {
+                    let group = doc.data();
+                    console.log(group);
+
+                    options += "<option value=" + group.name + ">" + group.name + "</option>";
+                    console.log(options);
+                    document.getElementById("grouplist").innerHTML = options;
+                });
+            }
+        });
+
+</script>
+    </span>
+        <button id="genInviteLink" type="submit" onclick="genLink()">Generate Invite Link</button>
+        <br>
+        <textarea rows="1" cols="75" placeholder="Invite Link" id="Link"></textarea>
+        <br>
+        <button onclick="CopyLink()">Copy Invite</button>
+    </form>
+</div>
+
+<script>
+
+    function CopyLink() {
+        var copyText = document.getElementById("Link");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
+    }
+
+    function genLink() {
+        document.getElementById('Link').innerHTML = "http://localhost:63342/SchedulingSystemAgile/src/acceptinvite.html?" + data.id;
+    }
+
+</script>
+</body>
+
+</html>
+

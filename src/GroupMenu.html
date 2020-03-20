@@ -7,9 +7,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
   <script src="js/firebaseConfig.js"></script>
-  <style>
 
-  </style>
 </head>
 <body>
 
@@ -19,14 +17,14 @@
 
 <h1 class="sign-in-header" id="gname" > Insert Group Name Here </h1>
 
-<form method="post" class="login.php">
+<div id="print" class="container" style="width: auto">
 
-  <button name="members" type="submit" class="longsecondary">Members</button>
+  <button name="members" type="submit" class="longsecondary" onclick="goMembers()">Members</button>
   <button name="availability" type="submit" class="longsecondary">Availability</button>
   <button name="schedules" type="submit" class="longsecondary">Schedules</button>
   <button name="schedules" type="submit" class="longprimary" onclick="goBack()">Back to Main Menu</button>
 
-</form>
+</div>
 
 <!--     Edit footer.html to change the html in the footer     -->
 <!-- Edit loadfooter.js to change the javascript in the footer -->
@@ -34,7 +32,12 @@
 
 <script>
   function goBack() {
-    window.location.replace("/../../MainMenu.html");
+    window.location.replace("./MainMenu.html");
+  }
+
+  function goMembers() {
+    //window.location.replace("./groupinfo.html");
+    window.location.replace("./GroupMember.html");
   }
 
   document.getElementById('gname').innerHTML = sessionStorage.groupname;

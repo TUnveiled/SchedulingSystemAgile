@@ -117,10 +117,15 @@
                         sessionStorage.groupname = doc.data().name;
                         sessionStorage.groupdescription = doc.data().description;
                         sessionStorage.groupid = doc.id;
-                        console.log(doc.data().name);
-                        console.log(doc.data().description);
-                        console.log(doc.id);
-                        window.location.href = "GroupMenu.html";
+                        console.log(doc);
+                        console.log(sessionStorage.uid);
+                        firebase.firestore().collection('groups').doc(doc.id).collection('members')
+                            .where("user", "==", firebase.firestore().collection('users').doc(sessionStorage.uid)).get()
+                            .then((querySnapshot) => {
+                                sessionStorage.memberid = querySnapshot.docs[0].id;
+                                window.location.href = "GroupMenu.html";
+                            });
+
                     });
                 });
         });

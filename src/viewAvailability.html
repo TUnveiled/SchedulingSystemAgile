@@ -48,31 +48,51 @@
         var Dates=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
         console.log(AllDates);
-        var document="OEDjHuvlcCAPwQwW8Pm4";// need to replace with the memeber and group ID after they have been found on other pages
+        var docid="OEDjHuvlcCAPwQwW8Pm4";// need to replace with the memeber and group ID after they have been found on other pages
         var userId="vxBJ3cRFc037Lkvh27FW";
 
 
-        let Ref = firebase.firestore().collection("groups").doc(document).collection("members").doc(userId);
+        let Ref = firebase.firestore().collection("groups").doc(docid).collection("members").doc(userId);
 
         Ref.get().then((doc) => {
-            let a = doc.data().Availability.Monday[0].End;
-            console.log(doc.data().Availability.Monday[0].End);
-            let time = "div.hour." + a + ".selected";
-           //$('#target').weekly_schedule("getSelectedHour");
 
-            let days = [];
-            let monday = [];
-            days[0] = monday;
-            monday[1] = time;
+            function incrementTime(currTime) {
+                if (currTime[1] === ':') {
+                    return currTime.replace(currTime[0], parseInt(currTime[0]) + 1);
+                } else {
+                    switch (currTime.substr(0,2)) {
+                        case "10":
+                            return currTime.replace(currTime.substr(0,2), parseInt(currTime.substr(0, 2)) + 1);
+                        case "11":
+                            if (currTime[5] === 'P')
+                                return "12:00AM";
+                            else
+                                return "12:00PM";
+                        case "12":
+                            return "1:00PM";
+                    }
+                }
+            }
 
-            let obj = {
-                days
-            };
-            console.log(obj);
-            var poppycarr=$('#target').weekly_schedule(obj.days);
-            console.log(poppycarr);
+            let data = doc.data();
+            let avail = data.Availability;
+
+            const days = ["","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            for (let i = 1; i <= 7; i++) {
+                let day = days[i];
+                for (let j = 0; j < avail[day].length; j++) {
+                    for (let time = avail[day][j].Start; time !== avail[day][j].End; time = incrementTime(time)) {
+                        console.log(time);
+                        document.getElementsByClassName(time)[i].classList.add("selected");
+                    }
+                }
+            }
+
 
         });
+
+
 
         /*update({//adds the data to the database
             Availability: {

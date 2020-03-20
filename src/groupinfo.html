@@ -12,7 +12,7 @@
 
     <script>
         function goBack() {
-            window.location.replace("../../groups.html");
+            window.location.replace("./GroupMenu.html");
         }
     </script>
 </head>
@@ -22,15 +22,18 @@
 <!-- Edit loadheader.js to change the javascript in the header -->
 <div id="header"><script src="js/loadheader.js"></script></div>
 
+        <!--
         <label >Group Name:</label><br>
         <p id="name"></p>
         <label >Group Description:</label><br>
         <p id="description"></p>
+        -->
         <label >Group Members:</label><br>
         <p id="members"></p>
     <script>
-        document.getElementById("name").innerHTML = sessionStorage.groupname;
+        /*document.getElementById("name").innerHTML = sessionStorage.groupname;
         document.getElementById("description").innerHTML = sessionStorage.groupdescription;
+        */
 
         let members = ""
         let memberid;

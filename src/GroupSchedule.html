@@ -42,29 +42,32 @@
     </div>
   </form>
 
-  <form style="width: auto" method="post" action="">
-      <select style="width: 100%" size="8" id="country" name="country">
-        <option class="listbox-option" value="australia">TUE (10AM - 4PM) - Matt Carr - Database Administration</option>
-        <option class="listbox-option" value="canada">MON (2AM - 4PM) - DIL PREET - Front End Development</option>
-        <option class="listbox-option" value="usa">FRI (10AM - 4PM) - IFE DAVID - Drunk End Development</option>
-        <option class="listbox-option" value="australia">TUE (1AM - 4PM) - Matt Carr - Database Administration</option>
-        <option class="listbox-option" value="canada">MON (3AM - 5PM) - DIL PREET - Front End Development</option>
-        <option class="listbox-option" value="usa">FRI (5PM - 4AM) - IFE DAVID - Drunk End Development</option>
-      </select>
-    <button class="longprimary"  type="submit">Edit Schedule</button>
-    <button class="longsecondary"  type="submit">Create New Schedule</button>
-    <button class="longsecondary"  type="submit">Delete Schedule</button>
-  </form>
 
-
-
-
-
+  <select style="width: 100%" size="8" id="country" name="country">
+    <option class="listbox-option" value="australia">TUE (10AM - 4PM) - Matt Carr - Database Administration</option>
+    <option class="listbox-option" value="canada">MON (2AM - 4PM) - DIL PREET - Front End Development</option>
+    <option class="listbox-option" value="usa">FRI (10AM - 4PM) - IFE DAVID - Drunk End Development</option>
+    <option class="listbox-option" value="australia">TUE (1AM - 4PM) - Matt Carr - Database Administration</option>
+    <option class="listbox-option" value="canada">MON (3AM - 5PM) - DIL PREET - Front End Development</option>
+    <option class="listbox-option" value="usa">FRI (5PM - 4AM) - IFE DAVID - Drunk End Development</option>
+  </select>
+  <button class="longprimary"  onclick="edit()">Edit Schedule</button>
+  <button class="longsecondary"  onclick="create()">Create New Schedule</button>
+  <button class="longsecondary"  type="submit">Delete Schedule</button>
+  
 </div>
 
 <!-- ************************************ Page Footer Starts Here ************************************ -->
 
 <script>
+  function edit() {
+    window.location.href = "./EditSchedule.html";
+  }
+
+  function create() {
+    window.location.href = "./AssignSchedule.html"
+  }
+
   function openNav() {
     document.getElementById("myNav").style.height = "100%";
   }

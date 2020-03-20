@@ -73,7 +73,7 @@
 
     <button class="longprimary" onclick="selectGroup()">Select</button>
     <button onclick="createGroup()" class="longsecondary">Create Group</button>
-    <button onclick="inviteMember()" class="longsecondary">Invite Member</button>
+    <button onclick="createGroup()" class="longsecondary">Invite Member</button>
 
 </div>
 
@@ -85,9 +85,6 @@
 <script>
     function createGroup() {
         window.location.href = "creategroup.html";
-    }
-    function inviteMember() {
-        window.location.href = "adduser.html";
     }
     function getGroup() {
         document.getElementById("printgroups").innerHTML = sessionStorage.groups;

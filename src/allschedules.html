@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="stylesheet/stylesheet.css">
+</head>
+<body>
+
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">Home</a>
+    <a href="#">My Profile</a>
+    <script src="js/logout.js"></script>
+    <a onclick="LogOut()">Log Out</a>
+  </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Group Activities </h1>
+
+<div class="container" style="width: auto">
+  <form style="width: auto" method="post" action="">
+    <div class="inline-container">
+
+      <select style="width: auto" name="country">
+      <option class="listbox-option" value="australia">Filter Result by Name</option>
+      <option class="listbox-option" value="canada">Filter Result by Days</option>
+      <option class="listbox-option" value="usa">Filter Result by Tasks</option>
+      </select>
+
+      <input class="search-input" type="email" id="email" placeholder="Search" name="email">
+      <button class="longprimary"  type="submit">Filter</button>
+
+    </div>
+  </form>
+
+  <form style="width: auto" method="post" action="">
+      <select style="width: 100%" size="8" id="country" name="country">
+        <option class="listbox-option" value="australia">TUE - Matt Carr - Database Administration</option>
+        <option class="listbox-option" value="canada">MON - DIL PREET - Front End Development</option>
+        <option class="listbox-option" value="usa">FRI - IFE DAVID - Drunk End Development</option>
+        <option class="listbox-option" value="australia">TUE - Matt Carr - Database Administration</option>
+        <option class="listbox-option" value="canada">MON - DIL PREET - Front End Development</option>
+        <option class="listbox-option" value="usa">FRI - IFE DAVID - Drunk End Development</option>
+      </select>
+    <button class="longprimary"  type="submit">Select</button>
+    <button class="longsecondary"  type="submit">Create New Schedule</button>
+  </form>
+
+
+
+
+
+</div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<script>
+  function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+  }
+
+  function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+  }
+</script>
+
+</body>
+</html>

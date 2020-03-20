@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first --><!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.location.replace("index.html");
+        }
+    </script>
+</head>
+
+<body>
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+        <a href="#">Home</a>
+        <a href="#">My Profile</a>
+        <script src="js/logout.js"></script>
+        <a href="#" onclick="LogOut()">Log Out</a>
+    </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Your Groups </h1>
+
+<div id="printgroups" class="container" style="width: auto">
+    <form method="post" class="login.php">
+
+    <!--<select style="width: 100%"  size = "sessionStorage.groups.length" onchange="getGroup()">
+        <option class="listbox-option" value="g1">  Insert Group 1</option>
+        <option class="listbox-option" value="g2">  Insert Group 2</option>
+        <option class="listbox-option" value="g3">  Insert Group 3</option>
+        <option class="listbox-option" value="g4">  Insert Group 4</option>
+        <option class="listbox-option" value="g5">  Insert Group 5</option>
+        <option class="listbox-option" value="g6">  Insert Group 6</option>
+    </select>-->
+
+        <select id="grouplist" name="grouplist"></select><br>
+        <span>
+    <script>
+        let options = "";
+
+        firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+            let data = doc.data().groups;
+            console.log(data.length);
+            //console.log(sessionStorage.uid);
+            //console.log(data[0]);
+            options += "<option selected>Select option</option>";
+            for (let i = 0; i < data.length; i++){
+                firebase.firestore().collection('groups').doc(data[i].id).get().then((doc) => {
+                    let group = doc.data();
+                    console.log(group);
+
+                            options += "<option value=" + group.name + ">" + group.name + "</option>";
+                            console.log(options);
+                            document.getElementById("grouplist").innerHTML = options;
+
+                });
+            }
+        });
+
+</script>
+    </span>
+
+
+
+    </form>
+
+    <button class="longprimary" onclick="selectGroup()">Select</button>
+    <button onclick="createGroup()" class="longsecondary">Create Group</button>
+
+
+</div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+    }
+    function createGroup() {
+        window.location.replace("js/CreateGroup/creategroup.html");
+    }
+    function getGroup() {
+        let x = sessionStorage.groups;
+        document.getElementById("printgroups").innerHTML = x;
+    }
+
+        firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+            let data = doc.data();
+            sessionStorage.groups = data.groups;
+        });
+
+                //printgroups.innerHTML += '<div class="result">' + sessionStorage.groups + '</div>';
+                console.log(sessionStorage.groups);
+
+    function selectGroup() {
+        let selectedGroup = document.getElementById("grouplist");
+        let printGroup = selectedGroup.options[selectedGroup.selectedIndex].text;
+        console.log(printGroup);
+
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('groups')
+                .where('name', '==', printGroup)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach(function (doc) {
+                        //console.log(doc.data())
+                        sessionStorage.groupname = doc.data().name;
+                        sessionStorage.groupdescription = doc.data().description;
+                        console.log(doc.data().name);
+                        console.log(doc.data().description);
+                        window.location.replace("js/GroupInfo/groupinfo.html");
+                    });
+                });
+        });
+
+
+        /*firebase.firestore().collection('users').doc(sessionStorage.uid).get().then((doc) => {
+            console.log(doc.data().groups);
+            console.log(sessionStorage.uid);
+            if (doc.exists) {
+                firebase.firestore().collection('groups').doc(printGroup).get().then((doc2) => {
+                    console.log(doc2.data().name);
+                    if(doc2.exists){
+                            console.log(true);
+                        }
+                        else{
+                            alert("Group does not exist");
+                        }
+                });
+            }
+            else {
+
+            }
+
+        });*/
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="../firebaseConfig.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../stylesheet/stylesheet.css">
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.location.replace("../../groups.html");
+        }
+    </script>
+</head>
+<body>
+
+
+        <label >Group Name:</label><br>
+        <p id="name"></p>
+        <label >Group Description:</label><br>
+        <p id="description"></p>
+    <script>
+        document.getElementById("name").innerHTML = sessionStorage.groupname;
+        document.getElementById("description").innerHTML = sessionStorage.groupdescription;
+    </script>
+
+
+    <ul id="group-list"></ul>
+
+
+</body>
+</html>
+

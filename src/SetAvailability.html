@@ -5,108 +5,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Set Your General Availability</title>
+    <title>Group Member Availability</title>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
     <script src="js/firebaseConfig.js"></script>
 </head>
 <body>
-<div style="text-align: center;"><h1>Set your General Availability</h1></div>
-<form id="timeform">
-    <div class="section group">
-<div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-<h3>Monday</h3>
-        <form id="MonForm">
-        <label>From:</label><br>
-        <input type="time">
-            <br>
-        <label>To:</label><br>
-        <input type="time">
-        <div id="MondayAdd"></div>
-        <button id="AddMon" type="button" onclick="AddTime(MondayAdd.id)">New Time</button>
-        </form>
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+        <a href="#">Home</a>
+        <a href="#">My Profile</a>
+        <script src="js/logout.js"></script>
+        <a onclick="LogOut()">Log Out</a>
+    </div>
 </div>
-    <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-        <h3>Tuesday</h3>
-        <form id="TusForm">
-            <label>From:</label><br>
-            <input type="time">
-            <br>
-            <label>To:</label><br>
-            <input type="time">
-            <div id="TuesdayAdd"></div>
-            <button id="AddTus" type="button" onclick="AddTime(TuesdayAdd.id)">New Time</button>
-        </form>
-    </div>
-    <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-        <h3>Wednesday</h3>
-        <form id="WedForm">
-            <label>From:</label><br>
-            <input type="time">
-            <br>
-            <label>To:</label><br>
-            <input type="time">
-            <div id="WednesdayAdd"></div>
-            <button id="AddWed" type="button" onclick="AddTime(WednesdayAdd.id)">New Time</button>
-        </form>
-    </div>
-        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-            <h3>Thursday</h3>
-            <form id="ThursForm">
-                <label>From:</label><br>
-                <input type="time">
-                <br>
-                <label>To:</label><br>
-                <input type="time">
-                <div id="ThursdayAdd"></div>
-                <button id="AddThurs" type="button" onclick="AddTime(ThursdayAdd.id)">New Time</button>
-            </form>
-        </div>
-        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-            <h3>Friday</h3>
-            <form id="FriForm">
-                <label>From:</label><br>
-                <input type="time">
-                <br>
-                <label>To:</label><br>
-                <input type="time">
-                <div id="FridayAdd"></div>
-                <button id="AddFri" type="button" onclick="AddTime(FridayAdd.id)">New Time</button>
-            </form>
-        </div>
-        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-            <h3>Saturday</h3>
-            <form id="SatForm">
-                <label>From:</label><br>
-                <input type="time">
-                <br>
-                <label>To:</label><br>
-                <input type="time">
-                <div id="SaturdayAdd"></div>
-                <button id="AddSat" type="button" onclick="AddTime(SaturdayAdd.id)">New Time</button>
-            </form>
-        </div>
-        <div class="col span_1_of_7"><!-- from the stylesheet to make them in columns-->
-            <h3>Sunday</h3>
-            <form id="SunForm">
-                <label>From:</label><br>
-                <input type="time">
-                <br>
-                <label>To:</label><br>
-                <input type="time">
-                <div id="SundayAdd"></div>
-                <button id="AddSun" type="button" onclick="AddTime(SundayAdd.id)">New Time</button>
-            </form>
-        </div>
-    </div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<!-- ************************************ Page Header Ends Here ************************************ -->
+
+<h1> Set Your General Availability </h1>
+<div>
+
+    <form style="width: auto; color: white" method="post" action="">
+
+        <table>
+            <tr>
+                <th>Weekday</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td><input type="time" id="appt2" name="appt" disabled></td>
+                <td><input type="time" id="appt3" name="appt" disabled></td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td><input type="time" id="appt" name="appt" disabled></td>
+                <td><input type="time" id="appt1" name="appt" disabled></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td><input type="time" id="appt4" name="appt" disabled></td>
+                <td><input type="time" id="appt8" name="appt" disabled></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td><input type="time" id="appt88" name="appt" disabled></td>
+                <td><input type="time" id="appt99" name="appt" disabled></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td><input type="time" id="appt20" name="appt" disabled></td>
+                <td><input type="time" id="appt29" name="appt" disabled></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td><input type="time" id="appt26" name="appt" disabled></td>
+                <td><input type="time" id="appt24" name="appt" disabled></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td><input type="time" id="appt22" name="appt" disabled></td>
+                <td><input type="time" id="appt21" name="appt" disabled></td>
+            </tr>
+        </table>
+        <button class="longprimary"  type="submit">Edit / Save</button>
+        <button class="longsecondary"  type="submit">Submit</button>
+        <button class="longsecondary"  type="submit">Back To Main Menu</button>
+
     </form>
 
-<button id="TestBtn" onclick="testClick()">Test click this button</button>
-
-<p id="Here"></p>
-<div id="mySchedule">
 </div>
+
+<!-- ************************************ Page Footer Starts Here ************************************ -->
+
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+    }
+</script>
+
 </body>
 </html>
 <script src="//code.jquery.com/jquery.min.js"></script>

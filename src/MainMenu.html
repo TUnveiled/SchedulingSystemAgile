@@ -113,6 +113,11 @@
                         sessionStorage.groupname = doc.data().name;
                         sessionStorage.groupdescription = doc.data().description;
                         sessionStorage.groupid = doc.id;
+
+                        if (doc.data().owner === firebase.firestore().collection('users').doc(sessionStorage.uid)) {
+                            sessionStorage.owner = true
+                        }
+
                         console.log(doc);
                         console.log(sessionStorage.uid);
                         firebase.firestore().collection('groups').doc(doc.id).collection('members')

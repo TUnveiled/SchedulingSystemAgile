@@ -25,7 +25,7 @@
 <!-- ************************************ Page Header Ends Here ************************************ -->
 
 <h1> Group Members </h1>
-
+<div id="print" class="container" style="width: auto">
 <form style="width: auto" method="post" action="">
     <select style="width: 100%" size="8" id="country" name="country">
         <!--<option class="listbox-option" value="australia">Pappi Carr</option>
@@ -35,9 +35,11 @@
         <option class="listbox-option" value="canada">Noah Ji</option>
         <option class="listbox-option" value="canadaa">fIDpAUL </option>-->
     </select>
+
     <button class="longprimary"  type="submit">Select</button>
     <button class="longsecondary"  type="submit">Remove</button>
     <button class="longsecondary"  type="submit">Add Members</button>
+    </div>
 </form>
 </div>
 
@@ -56,7 +58,6 @@
                 memberid = doc.get('user').id;
 
                 firebase.firestore().collection('users').doc(memberid).get().then((doc) => {
-                    console.log(doc.data().name);
                     let member = doc.data().name;
                     members += "<option value=" + member + ">" + member + "</option>";
                     console.log(members);

@@ -108,8 +108,8 @@
         }
         console.log(AllDates);
         var document="OEDjHuvlcCAPwQwW8Pm4";// need to replace with the memeber and group ID after they have been found on other pages
-        var userId="vxBJ3cRFc037Lkvh27FW";
-        var Ref = firebase.firestore().collection("groups").doc(document).collection("members").doc(userId).update({//adds the data to the database
+        var userId="hQvNN942CWDbMIISPwhO";
+        var Ref = firebase.firestore().collection("groups").doc(sessionStorage.groupid).collection("members").doc(userId).update({//adds the data to the database
             Availability: {
                 Sunday: AllDates[0],
                 Monday: AllDates[1],

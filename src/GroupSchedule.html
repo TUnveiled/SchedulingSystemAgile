@@ -43,13 +43,15 @@
   </form>
 
 
-  <select style="width: 100%" size="8" id="country" name="country">
+  <select style="width: 100%" size="8" id="list">
+    <!--
     <option class="listbox-option" value="australia">TUE (10AM - 4PM) - Matt Carr - Database Administration</option>
     <option class="listbox-option" value="canada">MON (2AM - 4PM) - DIL PREET - Front End Development</option>
     <option class="listbox-option" value="usa">FRI (10AM - 4PM) - IFE DAVID - Drunk End Development</option>
     <option class="listbox-option" value="australia">TUE (1AM - 4PM) - Matt Carr - Database Administration</option>
     <option class="listbox-option" value="canada">MON (3AM - 5PM) - DIL PREET - Front End Development</option>
     <option class="listbox-option" value="usa">FRI (5PM - 4AM) - IFE DAVID - Drunk End Development</option>
+    -->
   </select>
   <button class="longprimary"  onclick="edit()">Edit Schedule</button>
   <button class="longsecondary"  onclick="create()">Create New Schedule</button>
@@ -60,6 +62,46 @@
 <!-- ************************************ Page Footer Starts Here ************************************ -->
 
 <script>
+
+
+  let members = ""
+  let memberid;
+
+  firebase.firestore().collection('groups').doc(sessionStorage.groupid).collection('members').get().then((doc) => {
+    let UserRef = firebase.firestore().collection("groups").doc(sessionStorage.groupid).collection("members");
+    UserRef.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        memberid = doc.get('user').id;
+
+        firebase.firestore().collection('users').doc(memberid).get().then((doc) => {
+          //let data = doc.data();
+          console.log(doc.data());
+          let member = doc.data().name;
+          let availability = doc.data().Availability;
+          console.log(availability)
+          members += "<option value=" + member + ">" + member + " " + "</option>";
+          console.log(members);
+          document.getElementById("list").innerHTML = members;
+        });
+
+      });
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   function edit() {
     window.location.href = "./EditSchedule.html";
   }
